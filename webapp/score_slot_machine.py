@@ -42,6 +42,8 @@ def get_transactions():
         .build()
     )
     result = icon_service.call(call)
+    print('best amount: ')
+    print(BET_AMOUNT)
 
     transaction_list = []
     for resultVal in result["result"]:
@@ -52,6 +54,7 @@ def get_transactions():
 
 # Create a new transaction and returns its hash
 def create_transaction(multiplier=1):
+    print('creating a transaction...')
     transaction = (
         CallTransactionBuilder()
         .from_(player_wallet.get_address())
@@ -67,7 +70,8 @@ def create_transaction(multiplier=1):
 
     signed_transaction = SignedTransaction(transaction, player_wallet)
     signed_transaction_hash = icon_service.send_transaction(signed_transaction)
-
+    print('hash ')
+    print(signed_transaction_hash)
     return signed_transaction_hash
 
 

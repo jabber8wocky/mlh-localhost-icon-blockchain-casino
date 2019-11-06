@@ -44,6 +44,8 @@ def get_transactions():
     result = icon_service.call(call)
     print('best amount: ')
     print(BET_AMOUNT)
+    print('treasury balance: ')
+    print(get_casino_balance())
 
     transaction_list = []
     for resultVal in result["result"]:

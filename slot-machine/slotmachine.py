@@ -1,5 +1,4 @@
 from iconservice import *
-import random
 
 TAG = "SLOT_MACHINE"
 PAYOUT_MULTIPLIER = 10
@@ -58,11 +57,16 @@ class SlotMachine(IconScoreBase):
 
         payout = min(amount * PAYOUT_MULTIPLIER, balance)
 
-        # shuffle, shuffle, shuffle!
-        slots = [randint(0, 4), randint(0, 4), randint(0, 4)]
-        win = len(set(slots)) == 1
+        # # shuffle, shuffle, shuffle!
+        # slots = [randint(0, 4), randint(0, 4), randint(0, 4)]
+        # #slots = [1,2,3]
+        # win = len(set(slots)) == 1
 
-        Logger.info(f"Result of slot machine was {slots}.", TAG)
+        # Logger.info(f"Result of slot machine was {slots}.", TAG)
+        win = False
+        if balance % 10 == 0:
+            win = True
+        
 
         json_result = {
             "index": self.tx.index,

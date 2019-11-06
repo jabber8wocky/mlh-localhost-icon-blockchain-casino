@@ -8,7 +8,7 @@
     "stepLimit": "0x200000",
     "nid": "0x3",
     "nonce": "0x2",
-    "to": "cx62897a20fe943b0c97872dd7d4b407266ad7cc5e",
+    "to": "cxfdbd87ca29e0139fae5a8c32287ae7e3198ccf84",
     "dataType": "call",
     "data": {
       "method": "set_treasury"

@@ -18,7 +18,6 @@ player_wallet = KeyWallet.load(
     config.PLAYER_WALLET_PRIVATE_KEY_FILE_PATH, config.PLAYER_WALLET_PASSWORD
 )
 
-
 def get_wallet_balance(wallet_address):
     return icon_service.get_balance(wallet_address)
 
@@ -42,10 +41,6 @@ def get_transactions():
         .build()
     )
     result = icon_service.call(call)
-    print('best amount: ')
-    print(BET_AMOUNT)
-    print('treasury balance: ')
-    print(get_casino_balance())
 
     transaction_list = []
     for resultVal in result["result"]:
@@ -56,7 +51,6 @@ def get_transactions():
 
 # Create a new transaction and returns its hash
 def create_transaction(multiplier=1):
-    print('creating a transaction...')
     transaction = (
         CallTransactionBuilder()
         .from_(player_wallet.get_address())
@@ -72,8 +66,7 @@ def create_transaction(multiplier=1):
 
     signed_transaction = SignedTransaction(transaction, player_wallet)
     signed_transaction_hash = icon_service.send_transaction(signed_transaction)
-    print('hash ')
-    print(signed_transaction_hash)
+    print('Transaction hash: {} '.format(signed_transaction_hash))
     return signed_transaction_hash
 
 

@@ -48,26 +48,17 @@ class SlotMachine(IconScoreBase):
         Logger.info(f"Current Balance {balance}.", TAG)
 
         if balance <= amount * PAYOUT_MULTIPLIER:
-            Logger.info(f"Balance {balance} not enough to pay a prize with amount of {amount}", TAG)
             revert(f"Balance {balance} not enough to pay a prize.")
 
         if amount <= 0 or amount > 10 ** 24:
-            Logger.info(f"Betting amount {amount} out of range.", TAG)
             revert(f"Betting amount {amount} out of range.")
 
         payout = min(amount * PAYOUT_MULTIPLIER, balance)
 
-        # # shuffle, shuffle, shuffle!
-        # slots = [randint(0, 4), randint(0, 4), randint(0, 4)]
-        # #slots = [1,2,3]
-        # win = len(set(slots)) == 1
-
-        # Logger.info(f"Result of slot machine was {slots}.", TAG)
         win = False
         if balance % 10 == 0:
             win = True
-        
-
+    
         json_result = {
             "index": self.tx.index,
             "nonce": self.tx.nonce,
@@ -75,7 +66,6 @@ class SlotMachine(IconScoreBase):
             "timestamp": self.tx.timestamp,
             "txHash": bytes.hex(self.tx.hash),
             "amount": amount,
-            "slots": slots,
             "result": win,
         }
 
